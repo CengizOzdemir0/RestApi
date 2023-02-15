@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -26,7 +27,7 @@ public class NoteRestController {
 
     }
     @PostMapping("/save")
-    public ResponseEntity save(@RequestBody Note note){
+    public ResponseEntity save(@Valid @RequestBody Note note){
        return noteService.save(note);
     }
 
