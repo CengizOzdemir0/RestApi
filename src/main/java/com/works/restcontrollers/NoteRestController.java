@@ -1,8 +1,10 @@
 package com.works.restcontrollers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.works.entities.Note;
+import com.works.services.NoteService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +12,10 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/note")
+@RequiredArgsConstructor
 public class NoteRestController {
+   final NoteService noteService;
+
     @GetMapping("list")
     public Map list() {
         Map map = new HashMap();
@@ -19,6 +24,10 @@ public class NoteRestController {
         map.put("stutus"," true");
         return map;
 
+    }
+    @PostMapping("/save")
+    public ResponseEntity save(@RequestBody Note note){
+       return noteService.save(note);
     }
 
 }
