@@ -17,10 +17,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AdminDetailService implements UserDetailsService {
     // User detail önemli !!
     final PasswordEncoder encoder;
