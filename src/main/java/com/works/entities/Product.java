@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-public class Product {
+public class Product extends Base{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pid;
