@@ -15,20 +15,19 @@ import java.util.Random;
 @RequestMapping("/note")
 @RequiredArgsConstructor
 public class NoteRestController {
-   final NoteService noteService;
+    final NoteService noteService;
 
-    @GetMapping("list")
-    public Map list() {
-        Map map = new HashMap();
-        map.put("name"," Cengiz");
-        map.put("age"," 27");
-        map.put("stutus"," true");
-        return map;
+
+    @PostMapping("/save")
+    public ResponseEntity save(@Valid @RequestBody Note note, @RequestParam(defaultValue = "newsLine") String data) {
+        System.out.println(data);
+        return noteService.save(note);
 
     }
-    @PostMapping("/save")
-    public ResponseEntity save(@Valid @RequestBody Note note){
-       return noteService.save(note);
+
+    @GetMapping("/list")
+    public ResponseEntity list(@RequestParam(defaultValue = "0") int pageCount) {
+        return noteService.list(pageCount);
     }
 
 }

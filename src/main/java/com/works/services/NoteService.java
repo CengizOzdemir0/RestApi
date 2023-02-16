@@ -4,6 +4,9 @@ import com.works.Utils.RestEnum;
 import com.works.entities.Note;
 import com.works.repositories.NoteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,11 @@ public class NoteService {
             return new ResponseEntity(hm,HttpStatus.BAD_REQUEST);
 
         }
+    }
+    public ResponseEntity list(int pageCount ){
+        Pageable pageable = PageRequest.of(pageCount,5);
+        Page<Note> notePage = noteRepository.findAll(pageable);
+        return new ResponseEntity(notePage,HttpStatus.OK);
     }
 
 
