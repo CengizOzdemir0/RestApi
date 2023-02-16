@@ -20,6 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
        http.csrf().disable().formLogin().disable();
+        // h2 console enable
+        http.headers().frameOptions().disable();
     }
 
 
