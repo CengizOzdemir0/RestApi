@@ -11,6 +11,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -73,6 +78,23 @@ public class ProductService {
     }
     public ResponseEntity adminList() {
         return new ResponseEntity(productRepository.allAdmin(),HttpStatus.OK);
+    }
+    // xml dosyası okumak için
+    public void xml() {
+        try {
+            String url = "https://www.tcmb.gov.tr/kurlar/today.xml";
+            String stData = Jsoup.connect(url).timeout(15000).ignoreContentType(true).get().toString();
+            // xml içinde gezinmek ve veri okumak için
+            Document  document = Jsoup.parse(stData, Parser.xmlParser());
+            Elements elements = document.getElementsByTag("Currency");
+            for( Element item : elements){
+                String CurrencName = item.getElementsByTag("CurrencyName").text();
+                System.out.println(CurrencName);
+            }
+
+        }catch (Exception ex){
+            System.out.println("xml error : "+ex);
+        }
     }
 
 }

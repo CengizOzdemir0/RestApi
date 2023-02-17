@@ -40,4 +40,9 @@ public class ProductRestController {
         return productService.adminList();
     }
 
+    @GetMapping("xml")
+    public void xml(){
+        productService.xml();
+    }
+
 }
