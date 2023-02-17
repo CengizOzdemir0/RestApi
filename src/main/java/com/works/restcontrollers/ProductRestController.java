@@ -35,4 +35,9 @@ public class ProductRestController {
         return productService.dummyJWT();
     }
 
+    @GetMapping("adminList")
+    public ResponseEntity adminList(){
+        return productService.adminList();
+    }
+
 }

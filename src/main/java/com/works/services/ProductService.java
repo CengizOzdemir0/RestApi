@@ -71,5 +71,8 @@ public class ProductService {
         Object jwtObj = iDummyJson.login(jwtUser);
         return new ResponseEntity(jwtObj,HttpStatus.OK);
     }
+    public ResponseEntity adminList() {
+        return new ResponseEntity(productRepository.allAdmin(),HttpStatus.OK);
+    }
 
 }
