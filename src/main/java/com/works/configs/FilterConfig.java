@@ -38,6 +38,8 @@ public class FilterConfig implements Filter {
         for(GrantedAuthority item : auth.getAuthorities()){
             roles.add(item.getAuthority());
         }
+        String sessionID = req.getSession().getId();
+
         System.out.println(url + " "+roles+"" + username + " " + detail + " " + agent + " " + date);
         if(!url.contains("h2-console")){
         Info i = new Info();
@@ -47,6 +49,7 @@ public class FilterConfig implements Filter {
         i.setDate(date);
         i.setDetail(detail);
         i.setUsername(username);
+        i.setSessionID(sessionID);
 
         infoRepository.save(i);
         }

@@ -17,6 +17,7 @@ public class Info {
     private String detail;
     private String agent;
     private Long date;
+    private String sessionID;
 
 
 }
