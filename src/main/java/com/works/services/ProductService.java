@@ -5,6 +5,7 @@ import com.works.entities.Note;
 import com.works.entities.Product;
 import com.works.ifeings.IDummyJson;
 import com.works.props.DummyProduct;
+import com.works.props.JWTUser;
 import com.works.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +62,14 @@ public class ProductService {
         DummyProduct stData = restTemplate.getForObject(url,DummyProduct.class);
         System.out.println(iDummyJson.dummyProduct().getProducts().get(0).getTitle());
         return  new ResponseEntity(iDummyJson.dummyProduct(),HttpStatus.OK);
+    }
+
+    public ResponseEntity dummyJWT() {
+        JWTUser jwtUser = new JWTUser();
+        jwtUser.setUsername("kminchelle");
+        jwtUser.setPassword("0lelplR");
+        Object jwtObj = iDummyJson.login(jwtUser);
+        return new ResponseEntity(jwtObj,HttpStatus.OK);
     }
 
 }

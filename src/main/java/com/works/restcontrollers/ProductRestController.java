@@ -29,4 +29,10 @@ public class ProductRestController {
     public ResponseEntity dummyProduct(){
         return productService.dummyProduct();
     }
+
+    @PostMapping("dummyLogin")
+    public ResponseEntity dummyLogin(){
+        return productService.dummyJWT();
+    }
+
 }
