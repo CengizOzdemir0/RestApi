@@ -25,4 +25,8 @@ public class ProductRestController {
     public ResponseEntity list(@RequestParam(defaultValue = "0") int productPage) {
         return productService.list(productPage);
     }
+    @GetMapping("dummyProduct")
+    public ResponseEntity dummyProduct(){
+        return productService.dummyProduct();
+    }
 }
