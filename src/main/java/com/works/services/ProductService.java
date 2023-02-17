@@ -3,6 +3,7 @@ package com.works.services;
 import com.works.Utils.RestEnum;
 import com.works.entities.Note;
 import com.works.entities.Product;
+import com.works.ifeings.IDummyJson;
 import com.works.props.DummyProduct;
 import com.works.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ import java.util.Map;
 public class ProductService {
     final ProductRepository productRepository;
     final RestTemplate restTemplate;
+    final IDummyJson iDummyJson;
     private static Logger logger = Logger.getLogger(ProductService.class);
 
     public ResponseEntity save(Product product) {
@@ -57,8 +59,8 @@ public class ProductService {
     public ResponseEntity dummyProduct() {
         String url = "https://dummyjson.com/products";
         DummyProduct stData = restTemplate.getForObject(url,DummyProduct.class);
-        System.out.println(stData.getProducts().get(0).getTitle());
-        return  new ResponseEntity(stData,HttpStatus.OK);
+        System.out.println(iDummyJson.dummyProduct().getProducts().get(0).getTitle());
+        return  new ResponseEntity(iDummyJson.dummyProduct(),HttpStatus.OK);
     }
 
 }
